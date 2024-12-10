@@ -1,19 +1,47 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../redux/authSlice";
+
 const Nav = () => {
+   const dispatch = useDispatch();
+   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
+   const handleLogout = () => {
+      dispatch(logout());
+   };
+
    return (
-      <nav class="main-nav">
-         <a class="main-nav-logo" href="./">
+      <nav className="main-nav">
+         <Link className="main-nav-logo" to="/">
             <img
-               class="main-nav-logo-image"
-               src="../img/argentBankLogo.png"
+               className="main-nav-logo-image"
+               src="/img/argentBankLogo.png"
                alt="Argent Bank Logo"
             />
-            <h1 class="sr-only">Argent Bank</h1>
-         </a>
+            <h1 className="sr-only">Argent Bank</h1>
+         </Link>
          <div>
-            <a class="main-nav-item" href="./sign-in">
-               <i class="fa fa-user-circle"></i>
-               Sign In
-            </a>
+            {isAuthenticated ? (
+               <button
+                  className="main-nav-item"
+                  onClick={handleLogout}
+                  style={{
+                     background: "none",
+                     border: "none",
+                     color: "inherit",
+                     cursor: "pointer",
+                  }}
+               >
+                  <i className="fa fa-sign-out"></i>
+                  Sign Out
+               </button>
+            ) : (
+               <Link className="main-nav-item" to="/sign-in">
+                  <i className="fa fa-user-circle"></i>
+                  Sign In
+               </Link>
+            )}
          </div>
       </nav>
    );
