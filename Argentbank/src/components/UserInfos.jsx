@@ -26,7 +26,7 @@ const UserInfos = () => {
    };
 
    return (
-      <div className="header bg-white" style={{ color: "#000" }}>
+      <div className="header bg-white">
          {isEditing ? (
             <form
                onSubmit={(e) => {
@@ -34,6 +34,24 @@ const UserInfos = () => {
                   handleSave();
                }}
             >
+               <div className="input-wrapper">
+                  <label htmlFor="firstName">First name:</label>
+                  <input
+                     type="text"
+                     id="firstName"
+                     value={user?.firstName || ""}
+                     disabled
+                  />
+               </div>
+               <div className="input-wrapper">
+                  <label htmlFor="lastName">Last name:</label>
+                  <input
+                     type="text"
+                     id="lastName"
+                     value={user?.lastName || ""}
+                     disabled
+                  />
+               </div>
                <div className="input-wrapper">
                   <label htmlFor="username">User name:</label>
                   <input

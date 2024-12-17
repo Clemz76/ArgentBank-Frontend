@@ -1,7 +1,7 @@
 import React from "react";
 import Form from "../components/Form";
 
-const SignIn = () => {
+const Login = () => {
    return (
       <main class="main bg-dark">
          <section class="sign-in-content">
@@ -13,4 +13,4 @@ const SignIn = () => {
    );
 };
 
-export default SignIn;
+export default Login;

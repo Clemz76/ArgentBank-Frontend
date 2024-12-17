@@ -1,7 +1,7 @@
 import UserInfos from "../components/UserInfos";
 import Accounts from "../components/Accounts";
 
-const Users = () => {
+const Profile = () => {
    return (
       <main className="main bg-dark">
          <UserInfos />
@@ -10,4 +10,4 @@ const Users = () => {
    );
 };
 
-export default Users;
+export default Profile;

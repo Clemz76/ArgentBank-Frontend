@@ -31,7 +31,7 @@ const Form = () => {
 
          dispatch(loginSuccess({ token, user }));
 
-         navigate("/users");
+         navigate("/profile");
       } catch (error) {
          console.error("Login failed:", error.message);
          alert("Invalid email or password");

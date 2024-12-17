@@ -15,7 +15,6 @@ const authSlice = createSlice({
          state.token = action.payload.token;
          state.user = action.payload.user;
 
-         // Stocker les infos dans le localStorage
          localStorage.setItem("token", action.payload.token);
          localStorage.setItem("user", JSON.stringify(action.payload.user));
       },
@@ -24,14 +23,16 @@ const authSlice = createSlice({
          state.token = null;
          state.user = null;
 
-         // Supprimer les infos du localStorage
          localStorage.removeItem("token");
          localStorage.removeItem("user");
+
+         window.location.href = "/";
       },
+
       updateUsername: (state, action) => {
          if (state.user) {
             state.user.userName = action.payload.userName;
-            localStorage.setItem("user", JSON.stringify(state.user)); // Mettre à jour dans le localStorage
+            localStorage.setItem("user", JSON.stringify(state.user));
          }
       },
    },
