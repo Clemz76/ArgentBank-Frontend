@@ -1,11 +1,11 @@
 import { useDispatch } from "react-redux";
 import { loginSuccess } from "../redux/authSlice";
-import { useNavigate } from "react-router-dom"; // Importer useNavigate
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Form = () => {
    const dispatch = useDispatch();
-   const navigate = useNavigate(); // Initialiser useNavigate
+   const navigate = useNavigate();
 
    const handleSubmit = async (e) => {
       e.preventDefault();
@@ -13,21 +13,27 @@ const Form = () => {
       const password = e.target.password.value;
 
       try {
-         const response = await axios.post(
+         const loginResponse = await axios.post(
             "http://localhost:3001/api/v1/user/login",
+            { email, password }
+         );
+
+         const token = loginResponse.data.body.token;
+
+         const profileResponse = await axios.get(
+            "http://localhost:3001/api/v1/user/profile",
             {
-               email,
-               password,
+               headers: { Authorization: `Bearer ${token}` },
             }
          );
 
-         // Dispatch pour mettre à jour Redux
-         dispatch(loginSuccess({ token: response.data.body.token }));
+         const user = profileResponse.data.body;
 
-         // Redirection vers /users
+         dispatch(loginSuccess({ token, user }));
+
          navigate("/users");
-      } catch (err) {
-         console.error("Login failed:", err.message);
+      } catch (error) {
+         console.error("Login failed:", error.message);
          alert("Invalid email or password");
       }
    };
@@ -36,11 +42,11 @@ const Form = () => {
       <form onSubmit={handleSubmit}>
          <div className="input-wrapper">
             <label htmlFor="email">Email</label>
-            <input type="text" id="email" name="email" />
+            <input type="text" id="email" name="email" required />
          </div>
          <div className="input-wrapper">
             <label htmlFor="password">Password</label>
-            <input type="password" id="password" name="password" />
+            <input type="password" id="password" name="password" required />
          </div>
          <button type="submit" className="sign-in-button">
             Sign In

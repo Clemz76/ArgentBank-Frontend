@@ -289,3 +289,61 @@ body {
       width: 200px;
    }
 }
+
+.bg-white {
+   background-color: white;
+   padding: 2rem;
+   color: #000;
+}
+
+.edit-button {
+   background-color: #00bc77;
+   color: white;
+   border: none;
+   padding: 10px 15px;
+   cursor: pointer;
+   font-weight: bold;
+}
+
+.input-wrapper {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 1rem;
+}
+
+.input-wrapper label {
+   font-weight: bold;
+}
+
+.input-wrapper input {
+   padding: 5px;
+   font-size: 1rem;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+}
+
+.input-wrapper input:disabled {
+   background-color: #f0f0f0;
+   color: #888;
+}
+
+.save-button,
+.cancel-button {
+   padding: 10px 15px;
+   margin: 5px;
+   font-weight: bold;
+   cursor: pointer;
+   border: none;
+   border-radius: 5px;
+}
+
+.save-button {
+   background-color: #00bc77;
+   color: white;
+}
+
+.cancel-button {
+   background-color: #ccc;
+   color: black;
+}
