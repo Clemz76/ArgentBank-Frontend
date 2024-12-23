@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
+import Error from "./pages/Error";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import { useSelector } from "react-redux";
@@ -27,6 +28,7 @@ function App() {
                   </ProtectedRoute>
                }
             />
+            <Route path="*" element={<Error />} />
          </Routes>
          <Footer />
       </BrowserRouter>
